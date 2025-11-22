@@ -14,3 +14,4 @@ cover/
 
 # Ignore IDE artefacts
 .elixir_ls
+.elixir-tools

@@ -107,7 +107,7 @@ defmodule Timex.Parse.DateTime.Tokenizers.Strftime do
         map(pair_left(char("%"), char("%")), &map_literal/1)
       ])
     )
-    |> eof
+    |> eof()
   end
 
   defp coalesce_token([flags, width, modifiers, directive]) do

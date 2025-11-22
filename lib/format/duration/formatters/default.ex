@@ -66,8 +66,8 @@ defmodule Timex.Format.Duration.Formatters.Default do
 
   def lformat(%Duration{} = duration, _locale) do
     duration
-    |> deconstruct
-    |> do_format
+    |> deconstruct()
+    |> do_format()
   end
 
   def lformat(_, _locale), do: {:error, :invalid_duration}
@@ -98,7 +98,7 @@ defmodule Timex.Format.Duration.Formatters.Default do
   defp format_component({:seconds, s}, str), do: str <> "#{s}S"
 
   defp deconstruct(duration) do
-    micros = Duration.to_microseconds(duration) |> abs
+    micros = Duration.to_microseconds(duration) |> abs()
     deconstruct({div(micros, @microsecond), rem(micros, @microsecond)}, [])
   end
 

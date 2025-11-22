@@ -204,7 +204,7 @@ defmodule Timex.Parse.DateTime.Parsers do
   def seconds_epoch(opts \\ []) do
     parser =
       case get_in(opts, [:padding]) do
-        :spaces -> skip(spaces()) |> integer
+        :spaces -> skip(spaces()) |> integer()
         _ -> integer()
       end
 

@@ -64,7 +64,7 @@ defmodule Timex.Format.Duration.Formatters.Humanized do
   @spec lformat(Duration.t(), String.t()) :: String.t() | {:error, term}
   def lformat(%Duration{} = duration, locale) do
     duration
-    |> deconstruct
+    |> deconstruct()
     |> do_format(locale)
   end
 
@@ -93,7 +93,7 @@ defmodule Timex.Format.Duration.Formatters.Humanized do
   end
 
   defp deconstruct(duration) do
-    micros = Duration.to_microseconds(duration) |> abs
+    micros = Duration.to_microseconds(duration) |> abs()
     deconstruct({div(micros, @microsecond), rem(micros, @microsecond)}, [])
   end
 

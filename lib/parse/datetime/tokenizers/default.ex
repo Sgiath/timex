@@ -132,7 +132,7 @@ defmodule Timex.Parse.DateTime.Tokenizers.Default do
         )
       ])
     )
-    |> eof
+    |> eof()
   end
 
   @spec coalesce_token(list(binary)) :: Directive.t()

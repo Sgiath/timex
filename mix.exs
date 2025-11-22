@@ -7,15 +7,27 @@ defmodule Timex.Mixfile do
     [
       app: :timex,
       version: @version,
-      elixir: "~> 1.11",
+      elixir: "~> 1.15",
       description: description(),
       package: package(),
       deps: deps(),
       docs: docs(),
       compilers: Mix.compilers(),
       test_coverage: [tool: ExCoveralls],
-      elixirc_paths: elixirc_paths(Mix.env()),
-      preferred_cli_env: [
+      elixirc_paths: elixirc_paths(Mix.env())
+    ]
+  end
+
+  def application do
+    [
+      env: [local_timezone: nil],
+      mod: {Timex, []}
+    ]
+  end
+
+  def cli do
+    [
+      preferred_env: [
         "hex.publish": :docs,
         docs: :docs,
         coveralls: :test,
@@ -24,13 +36,6 @@ defmodule Timex.Mixfile do
         "coveralls.json": :test,
         "coveralls.post": :test
       ]
-    ]
-  end
-
-  def application do
-    [
-      env: [local_timezone: nil],
-      mod: {Timex, []}
     ]
   end
 
@@ -57,12 +62,12 @@ defmodule Timex.Mixfile do
     [
       {:tzdata, "~> 1.1"},
       {:combine, "~> 0.10"},
-      {:gettext, "~> 0.26"},
-      {:ex_doc, "~> 0.13", only: [:docs]},
+      {:gettext, "~> 0.26 or ~> 1.0"},
+      {:ex_doc, "~> 0.39", only: [:docs]},
       {:benchfella, "~> 0.3", only: [:bench]},
-      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:excoveralls, "~> 0.4", only: [:test]},
-      {:stream_data, "~> 1.1", only: [:test]}
+      {:dialyxir, "~> 1.4", only: [:dev], runtime: false},
+      {:excoveralls, "~> 0.18", only: [:test]},
+      {:stream_data, "~> 1.2", only: [:test]}
     ]
   end
 

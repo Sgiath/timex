@@ -153,7 +153,7 @@ defmodule Timex.Parse.DateTime.Parser do
     case Combine.parse(str, pipe([eof() | parsers] |> Enum.reverse(), & &1)) do
       [results] when is_list(results) ->
         results
-        |> extract_parse_results
+        |> extract_parse_results()
         |> Stream.with_index()
         |> Enum.sort_by(fn
           # If :force_utc exists, make sure it is applied last

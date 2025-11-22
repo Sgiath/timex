@@ -563,25 +563,25 @@ defmodule Timex.Duration do
         from_seconds(seconds)
 
       :microseconds ->
-        seconds |> from_seconds |> to_microseconds
+        seconds |> from_seconds() |> to_microseconds()
 
       :milliseconds ->
-        seconds |> from_seconds |> to_milliseconds
+        seconds |> from_seconds() |> to_milliseconds()
 
       :seconds ->
         seconds
 
       :minutes ->
-        seconds |> from_seconds |> to_minutes
+        seconds |> from_seconds() |> to_minutes()
 
       :hours ->
-        seconds |> from_seconds |> to_hours
+        seconds |> from_seconds() |> to_hours()
 
       :days ->
-        seconds |> from_seconds |> to_days
+        seconds |> from_seconds() |> to_days()
 
       :weeks ->
-        seconds |> from_seconds |> to_weeks
+        seconds |> from_seconds() |> to_weeks()
     end
   end
 
@@ -691,7 +691,7 @@ defmodule Timex.Duration do
       ...> result == 4
       true
   """
-  @spec measure((() -> any)) :: {__MODULE__.t(), any}
+  @spec measure((-> any)) :: {__MODULE__.t(), any}
   def measure(fun) when is_function(fun) do
     {time, result} = :timer.tc(fun, [])
     {Duration.from_microseconds(time), result}
